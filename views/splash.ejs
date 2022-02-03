@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="stylesheets\\splash.css">
+</head>
+<body>
+
+<div class="grid-container">
+  <div class="players-online"><input type="hidden" id="userNum" name="userNum"> <%= data %></div>
+  <div class="games-total"> <%= gameNum %></div>
+  <div class="number-cards"> <%= flips %></div>
+  <div class="name-box"><h1 class="gameTitle"></h1></div>  
+  <div class="blank"></div>  
+  <div class="join-game"><button>Play</button></div>
+</div>
+
+<script>
+    //same port as http server on server
+let ws = new WebSocket("ws://localhost:5000")
+let clientId = null;
+let gameId = null;
+let playerName = null;
+let players = []
+
+let btnJoinDiv = document.querySelector('.join-game')
+let btnJoin = btnJoinDiv.querySelector('button')
+
+btnJoin.addEventListener('click', (event)=>{
+    console.log('HEHE')
+    const payLoad = {
+        "method":"join",
+        "clientId":clientId,
+    }
+    ws.send(JSON.stringify(payLoad))
+})
+
+
+const payLoad = {
+    "method":"onStart",
+    "side":"splash"
+}
+ws.onopen = () =>ws.send(JSON.stringify(payLoad));
+ws.onmessage = (message)=>{
+    //message.data is going to be in json (response from server)
+    const response = JSON.parse(message.data);
+    console.log(response);
+    if(response.method === "onStart"){
+        clientId = response.clientId;
+        console.log("client id:"+clientId)
+    }
+
+    if(response.method === "join"){
+        gameId = response.gameId;
+        players = response.players;
+        console.log(players.length);
+        console.log(gameId);
+        window.location.href = "http://localhost:5001/"+gameId+"?clientId="+clientId;
+    }
+}
+
+</script>
+</body>
+</html>
+
+
