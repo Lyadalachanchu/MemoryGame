@@ -1,4 +1,6 @@
 # MemoryGame
+Purpose of this project was to become familiar with backend web development and to see how this connected to the front end.
+
 Multiplayer memory game with multiple rooms and simply "amazing" visuals and animations that are literally eye popping!
 
 Welcome Lobby:
