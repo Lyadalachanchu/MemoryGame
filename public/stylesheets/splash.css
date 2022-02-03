@@ -1,0 +1,141 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto;
+    grid-template-rows: auto auto auto auto auto auto;
+    grid-gap: 70px;
+    background-color: white;
+    padding: 10px;
+    grid-area: span;
+    position: absolute;
+  }
+  
+  .grid-container > div {
+    text-align: center;
+    padding: 20px 0;
+    font-size: 30px;
+  }
+  
+  .name-box {
+      grid-row-start: 1;
+      grid-row-end: 5;
+      grid-column-start: 2;
+      grid-column-end: 6;
+      text-align: center;
+      background-color: thistle;
+      animation: blueTravel 2s infinite;
+      position: absolute;
+      width: 1000px;
+      height: 400px;
+      left: 80px;
+      top: 10px;
+  }
+  .number-cards {
+    background-color: orange;
+    grid-row:2;
+    grid-column-start:1;
+    grid-column-end:3;
+  }
+  .number-cards::before {
+      content: 'Cards Flipped:'
+  }
+  .games-total {
+    background-color: orange;
+    grid-row:3;
+    grid-column-start:1;
+    grid-column-end:3;
+  }
+  .games-total::before {
+      content: 'Total Games Played:'
+  }
+  
+  @keyframes blueTravel {
+    0% {
+        background-color: rgb(33, 200, 206);
+    }
+    25% {
+        background-color: rgb(172, 141, 143);
+    }
+    50% {
+        background-color: rgb(143, 117, 137);
+    }
+    75% {
+        background-color: rgb(97, 119, 100);
+    }
+  }
+  
+  .join-game {
+      grid-row: 5;
+      grid-column-start: 2;
+      grid-column-end: 6;
+      background-color: crimson;
+      position: absolute;
+      left: 80px;
+      top: 140px;
+      width: 1000px;
+  }
+  
+  
+  .gameTitle {
+      display: inline-block;
+      vertical-align: middle;
+      line-height: normal;
+  }
+  
+  input {
+      height: 60px;
+      width: 200px;
+      font-size: 50px;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: normal;
+      background-color: rgb(128, 128, 236);
+  }
+  button {
+      color: black;
+      text-align: center;
+      font-size: 32px;
+      font-family:'Times New Roman', Times, serif;
+  }
+  
+  .players-online {
+    background-color: orange;
+  }
+  .join-game button {
+      background-color: crimson;
+      border: none;
+      margin: 20px;
+      cursor: pointer;
+  }
+
+  .join-game button:hover {
+      background-color:rgb(240, 163, 128);
+  }
+  .join-game button:active {
+    background-color:rgb(117, 39, 3);
+}
+
+  .players-online::before {
+      content: 'Total Users: ';
+  }
+  .gameTitle::after {
+      content: "Delft Memory Game";
+  }
+
+  @media (max-width: 799px), (max-height: 799px) {
+    body::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 20px;
+      color: greenyellow;
+      padding: 20px;
+      content: "Your window is too small (at least 800x800px is expected) to play this game. Enlarge the browser window or zoom out to play or disable the CSS @media query.";
+      background-color: black;
+      z-index: 100;
+    }
+  }
+  
+  
